@@ -1,38 +1,129 @@
-.App {
-  text-align: center;
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Body setup */
+body, html {
+  height: 100%;
+  width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Main app container */
+.app-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100vh;
+  transition: background 0.5s ease-in-out; /* smooth color transition */
 }
 
-.App-link {
-  color: #61dafb;
+/* Title styling */
+.title {
+  font-size: 3rem;
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  margin-bottom: 40px;
+  text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Counter card container */
+.counter-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 30px 50px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.2); /* glass effect */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.counter-card:hover {
+  transform: scale(1.02);
+}
+
+/* Counter buttons */
+.counter-btn {
+  background-color: #fff;
+  border: none;
+  padding: 15px 25px;
+  font-size: 2rem;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.counter-btn:hover {
+  transform: scale(1.1);
+  background-color: #f0f0f0;
+}
+
+/* Counter input field */
+.counter-value {
+  width: 80px;
+  text-align: center;
+  font-size: 2rem;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
+  pointer-events: none; /* prevent editing */
+}
+
+/* Reset button */
+.reset-btn {
+  margin-top: 30px;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #fff;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.reset-btn:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .counter-card {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px 30px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .counter-btn {
+    padding: 12px 20px;
+    font-size: 1.8rem;
+  }
+
+  .counter-value {
+    width: 60px;
+    font-size: 1.8rem;
+  }
+
+  .title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .reset-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
   }
 }

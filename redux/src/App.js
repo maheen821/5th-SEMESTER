@@ -1,23 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useSelector, useDispatch } from "react-redux";
+import { incNum, decNum } from "./actions";
+import { useState } from "react";
 
 function App() {
+  const dispatch = useDispatch();
+  const counter = useSelector(state => state.counter);
+  const [bgColor, setBgColor] = useState("#66a6ff");
+
+  // Generate random pastel color
+  const randomColor = () => {
+    const r = Math.floor(Math.random() * 156 + 100);
+    const g = Math.floor(Math.random() * 156 + 100);
+    const b = Math.floor(Math.random() * 156 + 100);
+    return `rgb(${r}, ${g}, ${b})`;
+  };
+
+  const handleIncrement = () => {
+    dispatch(incNum());
+    setBgColor(randomColor());
+  };
+
+  const handleDecrement = () => {
+    dispatch(decNum());
+    setBgColor(randomColor());
+  };
+
+  const handleReset = () => {
+    dispatch({ type: "RESET" }); // Make sure you have a RESET action in your reducer
+    setBgColor("#66a6ff");
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container" style={{ background: bgColor }}>
+      <h1 className="title">Colorful Redux Counter</h1>
+      <div className="counter-card">
+        <button className="counter-btn" onClick={handleDecrement}>
+          −
+        </button>
+        <input className="counter-value" type="text" value={counter} readOnly />
+        <button className="counter-btn" onClick={handleIncrement}>
+          +
+        </button>
+      </div>
+      <button className="reset-btn" onClick={handleReset}>Reset</button>
     </div>
   );
 }
